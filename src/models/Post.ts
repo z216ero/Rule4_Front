@@ -3,7 +3,8 @@ export interface IPost {
     likeCount: number,
     viewCount: number,
     imagePath: string,
-    tags: ITag[]
+    tags: ITag[],
+    added: string
 }
 
 export interface ITag {
@@ -13,6 +14,7 @@ export interface ITag {
 }
 
 export enum TagType {
+    Copyright,
     General,
     Artist,
     Character

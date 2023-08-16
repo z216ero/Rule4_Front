@@ -5,7 +5,7 @@ import Layout from './Layout'
 
 export default function Body() {
   return (
-    <div className='bg-cyan-200 h-full'>
+    <div className='bg-neutral-900 h-full'>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Main />} />

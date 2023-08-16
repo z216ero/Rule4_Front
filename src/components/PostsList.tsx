@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react'
-import PostService from '../api/postService'
-import { useFetchData } from '../hooks/useFetchData';
 import PostPreview from './PostPreview';
-import { IPost } from '../models/Post';
+import { useGetPostsQuery } from '../services/postService';
+import { Spin } from 'antd';
 
 export default function PostsList() {
-    const { isLoading, data, error } = useFetchData<IPost[]>(PostService.getAllPost);
-
+    const { error, isLoading, data } = useGetPostsQuery("")
     if (isLoading) {
-        return <div>Loading</div>
+        return <Spin />
     }
 
     if (error) {
-        return <div>{error}</div>
+        return <div>Ошибка</div>
     }
 
     return (
-
         <div className='w-[70%] flex flex-wrap gap-2 mt-3'>{data?.map(p =>
-            <PostPreview key={p.id} post={p} />
-        )}
+            <PostPreview key={p.id} post={p} />)}
         </div>
     )
 }
