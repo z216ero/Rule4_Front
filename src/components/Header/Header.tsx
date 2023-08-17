@@ -1,6 +1,6 @@
 import React from 'react'
-import NavBar from './NavBar'
-import UserSection from './UserSection'
+import NavBar from './components/NavBar'
+import UserSection from './components/UserSection'
 
 export default function Header() {
     return (

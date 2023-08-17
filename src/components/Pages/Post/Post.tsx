@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
-import TagList from './TagList';
-import { useGetPostQuery } from '../services/postService';
+import TagList from './components/TagList';
+import { useGetPostQuery } from '../../../services/postService';
 
 const parseDate = (dateString: string | undefined): Date => {
     if (dateString != null) {

@@ -1,15 +1,10 @@
 import React from 'react'
 import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
 import { Select, Tag } from 'antd';
-import { useGetTagsQuery } from '../services/tagService';
+import { useGetTagsQuery } from '../../../../services/tagService';
 import { Spin } from 'antd';
-import { useAppSelector } from '../hooks/hooks';
-
-const options = [{ value: 'gold' }, { value: 'lime' }, { value: 'green' }, { value: 'cyan' }];
-
-interface ITest {
-    value: string
-}
+import { useAppSelector } from '../../../../hooks/hooks';
+import DataWrapper from '../../../DataWrapper';
 
 const tagRender = (props: CustomTagProps) => {
 
@@ -42,19 +37,15 @@ export default function TagFilter() {
         })
     });
 
-    if (isLoading)
-        return <Spin />
-
     return (
         <div className='w-[30%]'>
-            <Select allowClear={true}
-                options={data}
-                mode='multiple'
-                style={{ width: '100%' }}
-            >
+            <DataWrapper isError={isError} isLoading={isLoading} data={data}>
 
-            </Select>
-            <Tag >qwe</Tag>
+                <Select allowClear={true}
+                    options={data}
+                    mode='multiple'
+                    style={{ width: '100%' }} />
+            </DataWrapper>
         </div>
     )
 }

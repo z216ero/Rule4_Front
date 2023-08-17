@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { IPost } from '../models/Post';
+import { IPost } from '../../../../models/Post';
 
 interface IPostPreview {
     post: IPost

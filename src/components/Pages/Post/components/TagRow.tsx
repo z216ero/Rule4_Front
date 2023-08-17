@@ -1,5 +1,5 @@
 import React from 'react'
-import { ITag } from '../models/Post'
+import { ITag } from '../../../../models/Post'
 
 interface ITagRow {
     text: string,

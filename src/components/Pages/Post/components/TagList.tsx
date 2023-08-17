@@ -1,4 +1,4 @@
-import { ITag, TagType } from '../models/Post'
+import { ITag, TagType } from '../../../../models/Post'
 import TagRow from './TagRow'
 
 interface ITagList {

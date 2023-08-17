@@ -1,6 +1,6 @@
 import React from 'react'
-import TagFilter from './TagFilter'
-import PostsList from './PostsList'
+import TagFilter from './components/TagFilter'
+import PostsList from './components/PostsList'
 
 export default function Main() {
     return (
