@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { useGetTagsQuery } from '../../../services/tagService'
 import DataWrapper from '../../DataWrapper';
 import { ITag, TagType } from '../../../models/Post';
-import { Input, Space } from 'antd';
-
-const { Search } = Input;
+import { Input, Button } from 'antd';
 
 export default function Tags() {
   const { isError, isLoading, data } = useGetTagsQuery("");
@@ -21,7 +19,26 @@ export default function Tags() {
   return <DataWrapper isError={isError}
     data={data}
     isLoading={isLoading}>
-    <Input allowClear  onChange={setName} value={addingTag.name}></Input>
-    <Input allowClear onChange={setCode} value={addingTag.code}></Input>
-  </DataWrapper>
+    <div className='flex w-full justify-center gap-2'>
+      {data?.map(t =>
+        <div key={t.code}>{t.name}</div>
+      )}
+    </div>
+    <div className='flex w-full justify-center items-center flex-col gap-3'>
+      <div className='flex items-center gap-3'>
+        <div>Name:</div>
+        <div className='w-[300px]'>
+          <Input allowClear onChange={setName} value={addingTag.name}></Input>
+        </div>
+      </div>
+      <div className='flex items-center gap-3'>
+        <div>Code:</div>
+        <div className='w-[300px]'>
+          <Input allowClear onChange={setCode} value={addingTag.code}></Input>
+        </div>
+      </div>
+      <button className='border border-gray-300 px-5 py-1 rounded-2xl hover:bg-slate-800'>Add</button>
+    </div>
+    
+  </DataWrapper >
 }

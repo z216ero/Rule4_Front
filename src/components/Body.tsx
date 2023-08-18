@@ -6,7 +6,7 @@ import Tags from './Pages/Tags/Tags'
 
 export default function Body() {
   return (
-    <div className='bg-neutral-900 h-full'>
+    <div className='h-full'>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Main />} />

@@ -10,10 +10,12 @@ export default function PostsList() {
     }
 
     return (
-        <div className='w-[70%] flex flex-wrap gap-2 mt-3'>
+        <div className='w-[70%] '>
             <DataWrapper isError={isError} isLoading={isLoading} data={data}>
-                {data?.map(p =>
-                    <PostPreview key={p.id} post={p} />)}
+                <div className='flex flex-wrap gap-2 mt-3'>
+                    {data?.map(p =>
+                        <PostPreview key={p.id} post={p} />)}
+                </div>
             </DataWrapper>
         </div>
     )
