@@ -10,8 +10,18 @@ export const tagService = createApi({
     endpoints: (build) => ({
         getTags: build.query<ITag[], any>({
             query: () => 'Get',
+        }),
+        addTag: build.mutation<boolean, ITag>({
+            query: (tag: ITag) => ({
+                method: "POST",
+                url: "Add",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: tag
+            })
         })
     })
 })
 
-export const { useGetTagsQuery } = tagService;
+export const { useGetTagsQuery, useAddTagMutation } = tagService;

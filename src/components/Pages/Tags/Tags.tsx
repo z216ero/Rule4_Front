@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { useGetTagsQuery } from '../../../services/tagService'
+import { useAddTagMutation, useGetTagsQuery } from '../../../services/tagService'
 import DataWrapper from '../../DataWrapper';
 import { ITag, TagType } from '../../../models/Post';
 import { Input, Button } from 'antd';
 
 export default function Tags() {
+  const [addTag, result] = useAddTagMutation();
   const { isError, isLoading, data } = useGetTagsQuery("");
   const [addingTag, setAddingTag] = useState<ITag>({ code: "123", name: "123", type: TagType.Artist });
 
@@ -16,7 +17,7 @@ export default function Tags() {
     setAddingTag({ ...addingTag, code: e.target.value })
   }
 
-  return <DataWrapper isError={isError}
+  return <DataWrapper isError={false}
     data={data}
     isLoading={isLoading}>
     <div className='flex w-full justify-center gap-2'>
@@ -37,8 +38,8 @@ export default function Tags() {
           <Input allowClear onChange={setCode} value={addingTag.code}></Input>
         </div>
       </div>
-      <button className='border border-gray-300 px-5 py-1 rounded-2xl hover:bg-slate-800'>Add</button>
+      <button className='border border-gray-300 px-5 py-1 rounded-2xl hover:bg-slate-800' onClick={()=>addTag(addingTag)}>Add</button>
     </div>
-    
+
   </DataWrapper >
 }
