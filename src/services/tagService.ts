@@ -3,6 +3,7 @@ import { config } from '../appsetting';
 import { ITag } from '../models/Post';
 
 export const tagService = createApi({
+    tagTypes: ["Tags"],
     reducerPath: "tags",
     baseQuery: fetchBaseQuery({
         baseUrl: `${config.url}/Tag`,
@@ -10,6 +11,13 @@ export const tagService = createApi({
     endpoints: (build) => ({
         getTags: build.query<ITag[], any>({
             query: () => 'Get',
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.map(({ code }) => ({ type: 'Tags' as const, code })),
+                        { type: 'Tags', id: 'LIST' },
+                    ]
+                    : [{ type: 'Tags', id: 'Tags' }],
         }),
         addTag: build.mutation<boolean, ITag>({
             query: (tag: ITag) => ({
@@ -19,7 +27,8 @@ export const tagService = createApi({
                     'Content-Type': 'application/json',
                 },
                 body: tag
-            })
+            }),
+            invalidatesTags: ["Tags"]
         })
     })
 })
