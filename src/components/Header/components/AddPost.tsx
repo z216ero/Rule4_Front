@@ -18,7 +18,7 @@ export default function AddPost() {
     return (
         <>
             <div className='text-slate-100 text-xl hover:cursor-pointer' onClick={showModal}>
-                Add Post
+                New
             </div>
             <Modal title="Add Post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <p>Some contents...</p>
