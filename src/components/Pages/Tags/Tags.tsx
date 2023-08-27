@@ -4,6 +4,8 @@ import DataWrapper from '../../DataWrapper';
 import { ITag, TagType } from '../../../models/Post';
 import { Input, Button, Select, Space } from 'antd';
 import TagList from '../Post/components/TagList';
+import { message } from 'antd';
+import { Error } from '../../../models/Error';
 
 const { Option } = Select;
 
@@ -27,12 +29,19 @@ export default function Tags() {
 
   const addTagHandler = async () => {
     try {
-      await addTag(addingTag).unwrap();
+      await addTag(addingTag).unwrap(); // Замените на ваш вызов API и тип данных
       resetTag();
+      message.success('Тег успешно добавлен в базу данных.');
     } catch (error) {
+      console.log(typeof error);
+      const axiosError = error as Error; // Явное приведение типа
+      if (axiosError.data) {
+        message.error(`Произошла ошибка: ${axiosError.data.title}`);
+      } else {
+        message.error('Произошла неизвестная ошибка.');
+      }
     }
-
-  }
+  };
 
   const resetTag = () => {
     setAddingTag({ code: "", name: "", type: TagType.Copyright })

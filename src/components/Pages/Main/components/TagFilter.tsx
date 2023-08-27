@@ -13,8 +13,6 @@ export default function TagFilter() {
         })
     });
 
-    console.log(data)
-
     return (
         <div className='w-[30%]'>
             <DataWrapper isError={isError} isLoading={isLoading} data={data}>
