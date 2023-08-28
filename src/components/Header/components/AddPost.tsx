@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
+import AddPostForm from './AddPostForm';
 
 export default function AddPost() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,10 +21,12 @@ export default function AddPost() {
             <div className='text-slate-100 text-xl hover:cursor-pointer' onClick={showModal}>
                 New
             </div>
-            <Modal title="Add Post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+            <Modal title="Add Post"
+                open={isModalOpen}
+                onOk={handleOk} onCancel={handleCancel}
+                okButtonProps={{ type: "default" }} >
+                <AddPostForm
+                />
             </Modal>
         </>
     )

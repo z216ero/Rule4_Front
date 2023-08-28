@@ -29,16 +29,16 @@ export default function Tags() {
 
   const addTagHandler = async () => {
     try {
-      await addTag(addingTag).unwrap(); // Замените на ваш вызов API и тип данных
+      await addTag(addingTag);
       resetTag();
-      message.success('Тег успешно добавлен в базу данных.');
+      message.success('Success');
     } catch (error) {
       console.log(typeof error);
-      const axiosError = error as Error; // Явное приведение типа
+      const axiosError = error as Error;
       if (axiosError.data) {
-        message.error(`Произошла ошибка: ${axiosError.data.title}`);
+        message.error(`Error: ${axiosError.data.title}`);
       } else {
-        message.error('Произошла неизвестная ошибка.');
+        message.error('Unknown Error.');
       }
     }
   };
