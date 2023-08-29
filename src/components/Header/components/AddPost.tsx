@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-import AddPostForm from './AddPostForm';
+import UploadForm from './UploadForm';
 
 export default function AddPost() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,8 +25,7 @@ export default function AddPost() {
                 open={isModalOpen}
                 onOk={handleOk} onCancel={handleCancel}
                 okButtonProps={{ type: "default" }} >
-                <AddPostForm
-                />
+                <UploadForm />
             </Modal>
         </>
     )

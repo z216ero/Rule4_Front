@@ -10,7 +10,8 @@ export interface IPost {
 export interface ITag {
     code: string,
     name: string,
-    type: TagType
+    type: TagType,
+    postCount?: number
 }
 
 export enum TagType {
@@ -18,4 +19,4 @@ export enum TagType {
     General,
     Artist,
     Character
-}
+}   

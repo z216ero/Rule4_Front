@@ -10,7 +10,17 @@ export const tagService = createApi({
     }),
     endpoints: (build) => ({
         getTags: build.query<ITag[], any>({
-            query: () => 'Get',
+            query: () => `Get`,
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.map(({ code }) => ({ type: 'Tags' as const, code })),
+                        { type: 'Tags', id: 'LIST' },
+                    ]
+                    : [{ type: 'Tags', id: 'Tags' }],
+        }),
+        getTagsByName: build.query<ITag[], any>({
+            query: (name: string) => `GetByName?name=${name}`,
             providesTags: (result) =>
                 result
                     ? [
@@ -33,4 +43,4 @@ export const tagService = createApi({
     })
 })
 
-export const { useGetTagsQuery, useAddTagMutation } = tagService;
+export const { useGetTagsQuery, useAddTagMutation, useGetTagsByNameQuery } = tagService;

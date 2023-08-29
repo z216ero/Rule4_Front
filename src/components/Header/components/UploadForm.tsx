@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Upload, Button, Select } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { useAppSelector } from '../../../hooks/hooks';
 import TagList from '../../Ui/TagList';
+
+import SearchTagPanel from './SearchTagPanel';
 
 const { Option } = Select;
 
-
-
 const UploadForm: React.FC = () => {
-    const tagsList = useAppSelector(act => act.tags);
     const [form] = Form.useForm();
     const [fileList, setFileList] = useState<any[]>([]); // Типизируйте fileList по своей структуре
     const [tags, setTags] = useState<string[]>([]);
@@ -33,6 +31,8 @@ const UploadForm: React.FC = () => {
 
     return (
         <Form form={form} onFinish={handleSubmit}>
+            <SearchTagPanel />
+            
             <Form.Item name="file" label="Choose content">
                 <Upload
                     accept=".jpg,.jpeg,.png,.gif,.mp4"
