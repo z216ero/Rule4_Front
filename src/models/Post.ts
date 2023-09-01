@@ -7,11 +7,22 @@ export interface IPost {
     added: string
 }
 
+export interface IAddPost {
+    file: File,
+    tags: IAddTag[]
+}
+
 export interface ITag {
     code: string,
     name: string,
     type: TagType,
     postCount?: number
+}
+
+export interface IAddTag {
+    code: string,
+    name: string,
+    type: TagType,
 }
 
 export enum TagType {

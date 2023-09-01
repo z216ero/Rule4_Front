@@ -7,7 +7,7 @@ export const store = configureStore({
     reducer: {
         [tagService.reducerPath]: tagService.reducer,
         [postService.reducerPath]: postService.reducer,
-        "tag": tagSlice
+        "tagState": tagSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
         .concat(tagService.middleware)

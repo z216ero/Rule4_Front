@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITag } from "../../models/Post";
+import { ITag, IAddTag } from "../../models/Post";
 
 interface ITagState {
-    data: ITag[]
+    data: ITag[],
+    selectedTagsToAdd: IAddTag[]
 }
 
 const initialState: ITagState = {
-    data: []
+    data: [],
+    selectedTagsToAdd: []
 }
 
 const tagSlice = createSlice({
@@ -19,8 +21,16 @@ const tagSlice = createSlice({
         removeTag(state, { payload }: PayloadAction<ITag>) {
             state.data.push(payload);
         },
+        addTagToAdd({ selectedTagsToAdd }, { payload }: PayloadAction<IAddTag>) {
+            const existTagInList = selectedTagsToAdd.find(tag => tag.code === payload.code);
+            if (existTagInList === undefined)
+                selectedTagsToAdd.push(payload);
+        },
+        removeTagFromList({ selectedTagsToAdd }, { payload }: PayloadAction<IAddTag>) {
+            selectedTagsToAdd.splice(selectedTagsToAdd.findIndex((tag) => tag.code === payload.code), 1);
+        }
     }
 })
 
-export const { addTag, removeTag } = tagSlice.actions;
+export const { addTag, removeTag, addTagToAdd, removeTagFromList } = tagSlice.actions;
 export default tagSlice.reducer;

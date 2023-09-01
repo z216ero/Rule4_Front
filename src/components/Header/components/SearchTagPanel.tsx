@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { Input } from 'antd';
 import { useGetTagsByNameQuery } from '../../../services/tagService';
+import TagList from '../../Pages/Post/components/TagList';
 
 export default function SearchTagPanel() {
     const [filterName, setFilterName] = useState<string>("");
@@ -15,8 +16,10 @@ export default function SearchTagPanel() {
 
     return (
         <div>
-            {data?.map(tag => <div key={tag.code}>{tag.name} {tag.postCount}</div>)}
-            <Input onChange={filterNameSetHandler} value={filterName} />
+            <TagList tags={data} />
+            <div className='mt-2'>
+                <Input onChange={filterNameSetHandler} value={filterName} />
+            </div>
         </div>
     );
 }

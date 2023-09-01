@@ -13,7 +13,7 @@ const TagList = memo(function TagList({ tags }: ITagList) {
     const characters = tags?.filter(t => t.type === TagType.Character)
 
     return (
-        <div className='w-[50%] flex gap-2 flex-col'>
+        <div className='flex gap-2 flex-col'>
             <TagRow text='Copyright' tags={copyright} />
             <TagRow text='General' tags={generals} />
             <TagRow text='Artists' tags={artists} />

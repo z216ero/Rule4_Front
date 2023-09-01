@@ -15,18 +15,14 @@ export const postService = createApi({
         getPost: build.query<IPost, any>({
             query: (postId: number) => `GetById?postId=${postId}`
         }),
-        addPost: build.mutation<IPost, IPost>({
-            query: (post: IPost) => ({
+        addPost: build.mutation<void, FormData>({
+            query: (post: FormData) => ({
                 method: "POST",
                 url: "Add",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: post
-            }),
-            invalidatesTags: ["Posts"]
+                body: (post),
+            })
         })
     })
 })
 
-export const { useGetPostsQuery, useGetPostQuery } = postService;
+export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation } = postService;

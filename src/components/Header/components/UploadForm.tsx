@@ -1,56 +1,54 @@
 import React, { useState } from 'react';
-import { Form, Upload, Button, Select } from 'antd';
+import { Form, Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import TagList from '../../Ui/TagList';
-
 import SearchTagPanel from './SearchTagPanel';
-
-const { Option } = Select;
+import SelectedTags from './SelectedTags';
+import { useAppSelector } from '../../../hooks/hooks';
+import { useAddPostMutation } from '../../../services/postService';
+import { IAddPost, IAddTag, TagType } from '../../../models/Post';
 
 const UploadForm: React.FC = () => {
+    const [addPost] = useAddPostMutation();
+    const selectedTags = useAppSelector(state => state.tagState.selectedTagsToAdd)
     const [form] = Form.useForm();
-    const [fileList, setFileList] = useState<any[]>([]); // Типизируйте fileList по своей структуре
-    const [tags, setTags] = useState<string[]>([]);
+    const [file, setFile] = useState<File | null>(null);
 
-    const handleFileChange = ({ fileList }: any) => {
-        setFileList(fileList.slice(-1)); // Ограничиваем список до одного элемента
-    };
-
-    const handleTagChange = (selectedTags: string[]) => {
-        setTags(selectedTags);
+    const handleFileChange = ({ file }: any) => {
+        console.log(file)
+        setFile(file);
     };
 
     const handleSubmit = async (values: any) => {
-        const formData = new FormData();
-        formData.append('file', fileList[0].originFileObj);
-        formData.append('tags', JSON.stringify(tags));
+        if (!file || selectedTags.length === 0) {
+            return;
+        }
 
-        // Отправка formData на сервер
-        // Пример: await fetch('/api/upload', { method: 'POST', body: formData });
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('tags',JSON.stringify(selectedTags));
+
+        try {
+            await addPost(formData);
+        } catch (error) {
+        }
     };
 
     return (
         <Form form={form} onFinish={handleSubmit}>
             <SearchTagPanel />
-            
-            <Form.Item name="file" label="Choose content">
-                <Upload
-                    accept=".jpg,.jpeg,.png,.gif,.mp4"
-                    fileList={fileList}
+            <SelectedTags />
+            <Form.Item name="file" label="Choose content" required>
+                <Upload accept=".jpg,.jpeg,.png,.gif,.mp4"
+                    maxCount={1}
+                    fileList={[]}
                     onChange={handleFileChange}
-                    beforeUpload={() => false}
-                    multiple={false}
-                >
+                    beforeUpload={() => false}>
                     <Button icon={<UploadOutlined />}>upload</Button>
                 </Upload>
             </Form.Item>
 
-            <Form.Item name="tags" label="Tags">
-                <TagList></TagList>
-            </Form.Item>
-
             <Form.Item>
-                <Button htmlType="submit">
+                <Button htmlType="submit" disabled={selectedTags.length < 1 || file === null}>
                     Upload post
                 </Button>
             </Form.Item>
