@@ -9,7 +9,7 @@ interface IPostPreview {
 export default function PostPreview({ post }: IPostPreview) {
     return (
         <Link to={`post/${post.id}`} className='h-[200px] w-[200px] flex border'>            
-            <img alt='qwe' src={post.imagePath} className='flex justify-between px-3 w-full h-full'>
+            <img alt='post' src={post.imagePath} className='flex justify-between px-3 w-full h-full'>
             </img>
         </Link>
     )
