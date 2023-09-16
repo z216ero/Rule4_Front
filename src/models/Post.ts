@@ -4,7 +4,8 @@ export interface IPost {
     viewCount: number,
     imagePath: string,
     tags: ITag[],
-    added: string
+    added: string,
+    fileExtension: string
 }
 
 export interface IAddPost {
@@ -30,4 +31,9 @@ export enum TagType {
     General,
     Artist,
     Character
-}   
+}
+
+export interface IFIlterModel {
+    ignoreTags: ITag[],
+    includeTags: ITag[]
+}

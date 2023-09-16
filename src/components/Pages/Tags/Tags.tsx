@@ -33,7 +33,6 @@ export default function Tags() {
       resetTag();
       message.success('Success');
     } catch (error) {
-      console.log(typeof error);
       const axiosError = error as Error;
       if (axiosError.data) {
         message.error(`Error: ${axiosError.data.title}`);

@@ -21,7 +21,6 @@ export default function SelectedTags() {
                         key={tag.code}
                         onClick={() => onTagRemoveHandler(tag)}>
                         <div>{tag.name}</div>
-
                         <MinusCircleFilled />
                     </div>
                 )}

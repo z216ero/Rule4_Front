@@ -1,7 +1,6 @@
 import { ITag } from '../../../../models/Post'
 import { addTagToAdd } from '../../../../store/slices/tagSlice'
 import { useAppDispatch } from '../../../../hooks/hooks';
-import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 
 interface ITagRow {

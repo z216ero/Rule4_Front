@@ -4,7 +4,7 @@ import PostsList from './components/PostsList'
 
 export default function Main() {
     return (
-        <div className='flex'>
+        <div className='flex h-full'>
             <TagFilter />
             <PostsList />
         </div>

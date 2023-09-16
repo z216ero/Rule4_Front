@@ -17,7 +17,7 @@ export const tagService = createApi({
                         ...result.map(({ code }) => ({ type: 'Tags' as const, code })),
                         { type: 'Tags', id: 'LIST' },
                     ]
-                    : [{ type: 'Tags', id: 'Tags' }],
+                    : [{ type: 'Tags', id: 'Tags' }]
         }),
         getTagsByName: build.query<ITag[], any>({
             query: (name: string) => `GetByName?name=${name}`,

@@ -20,7 +20,7 @@ export default function DataWrapper({ isLoading, isError, data, children }: IDat
     if (isLoading)
         return (
             <div className='w-full h-full flex items-center justify-center'>
-                <Spin />
+                <Spin size='large' />
             </div>
         )
 

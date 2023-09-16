@@ -57,9 +57,16 @@ export default function Post() {
     return (
         <DataWrapper isLoading={isLoading} isError={isError} data={post} >
             <div className='flex items-center mt-3 flex-col'>
-                <img src={post?.imagePath} alt='wqe'></img>
+                {post?.fileExtension === ".mp4" &&
+                    <video controls autoPlay>
+                        <source src={post?.imagePath}></source>
+                    </video>
+                }
+                {post?.fileExtension !== ".mp4" &&
+                    <img className="max-w-[1300px] mb-3" src={post?.imagePath} alt='imagePost'></img>
+                }
                 <TagList tags={post?.tags} />
-                <div className='text-white'>Published : {dateObject} Likes: {post?.likeCount} View: {post?.viewCount}</div>
+                <div className=''>Published : {dateObject} Likes: {post?.likeCount} View: {post?.viewCount}</div>
             </div>
         </DataWrapper>
     )

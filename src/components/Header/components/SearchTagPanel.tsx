@@ -7,7 +7,7 @@ import TagList from '../../Pages/Post/components/TagList';
 export default function SearchTagPanel() {
     const [filterName, setFilterName] = useState<string>("");
 
-    const { data, isError, isLoading } = useGetTagsByNameQuery(filterName);
+    const { data} = useGetTagsByNameQuery(filterName);
 
     const filterNameSetHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -18,7 +18,7 @@ export default function SearchTagPanel() {
         <div>
             <TagList tags={data} />
             <div className='mt-2'>
-                <Input onChange={filterNameSetHandler} value={filterName} />
+                <Input placeholder='type to search' onChange={filterNameSetHandler} value={filterName} />
             </div>
         </div>
     );
